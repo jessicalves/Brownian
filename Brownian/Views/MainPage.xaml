@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Brownian.ViewModels"
+             xmlns:controls="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Brownian.Views.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.BindingContext>
+        <viewModels:BrownianViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+              ColumnSpacing="12"
+              RowSpacing="10">
+
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                <Label Text="Preço inicial" />
+                <Entry Keyboard="Numeric" Text="{Binding InitialPrice, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="0"
+                            MaximumValue="1000000"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}" />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                <Label Text="Volatilidade" />
+                <Entry Keyboard="Numeric" Text="{Binding Sigma, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="0"
+                            MaximumValue="500" />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                <Label Text="Retorno médio" />
+                <Entry Keyboard="Numeric" Text="{Binding Mean, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="-100"
+                            MaximumValue="100" />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                <Label Text="Tempo (dias)" />
+                <Entry Text="{Binding NumDays, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            MinimumLength="1"
+                            MaximumLength="6"
+                            RegexPattern="^[1-9]\d*$" />
+                    </Entry.Behaviors>
+                </Entry>
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="4" Grid.Column="1"
+                Text="Gerar Simulação"
+                Command="{Binding GenerateCommand}" />
+
+            <controls:SKCanvasView
+                Grid.Row="0" Grid.RowSpan="5" Grid.Column="0"
+                x:Name="ChartCanvas"
+                PaintSurface="ChartCanvas_OnPaintSurface" />
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
