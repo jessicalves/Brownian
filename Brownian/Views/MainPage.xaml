@@ -18,7 +18,8 @@
     <ScrollView>
         <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto"
               ColumnSpacing="12"
-              RowSpacing="10">
+              RowSpacing="10"
+              Padding="16">
 
             <VerticalStackLayout Grid.Row="0" Grid.Column="1">
                 <Label Text="Preço inicial" />

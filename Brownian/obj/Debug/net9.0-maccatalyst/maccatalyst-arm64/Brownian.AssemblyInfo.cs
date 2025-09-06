@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Brownian")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b24b7fad83f5c2092450cfef1c1e49bf69d5365e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Brownian")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Brownian")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
