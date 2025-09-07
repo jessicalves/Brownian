@@ -34,7 +34,6 @@ public partial class MainPage : ContentPage
         var prices = _viewModel.Prices.ToArray();
         double min = prices.Min();
         double max = prices.Max();
-        if (Math.Abs(max - min) < 1e-12) max = min + 1;
 
         var info = e.Info;
         
